@@ -1,8 +1,9 @@
 
-const express = require('express')
+const express = require('express');
 const router = express.Router();
 const coursesController = require('../controllers/courses.controller');
 const validation = require('../middleware/validation');
+const verifyToken = require("../middleware/auth");
 
 
 //! get all courses
@@ -11,7 +12,7 @@ router.get('/' , coursesController.getCourses)
 
 
 //! create course 
-router.post('/',  validation(), coursesController.addCourse);
+router.post('/', verifyToken ,   validation(), coursesController.addCourse);
 
 
 

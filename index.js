@@ -19,8 +19,10 @@ app.use(express.json());
 
 
 const coursesRouter = require('./routes/courses.route');
+const userRouter = require("./routes/users.route")
 
 app.use('/api/courses', coursesRouter)
+app.use("/api/users" , userRouter)
 
 
 
@@ -31,7 +33,7 @@ app.all('/*splat', (req ,res)=>{
 })
 
 //! global error handler
-app.use((err, res) => {
+app.use((err, req ,  res , next) => {
     res.status( err.statusCode || 500).json({status :  err.statusText || httpStatusText.ERROR , error: err});
 })
 
