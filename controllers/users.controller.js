@@ -19,7 +19,9 @@ const getAllUsers = asyncWrapper(
 
 
 const register = asyncWrapper(async (req, res, next) => {
-    const { firstName, lastName, email, password , role } = req.body;
+    const { firstName, lastName, email, password , role , avatar } = req.body;
+    
+    
 
     const user = await User.findOne({ email });
 
@@ -35,7 +37,7 @@ const register = asyncWrapper(async (req, res, next) => {
         lastName,
         email,
         password: hashedPassword,
-        role 
+        role ,
     })
 
     //! generate jwt token
